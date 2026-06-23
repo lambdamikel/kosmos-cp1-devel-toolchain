@@ -35,6 +35,12 @@ Then on the CP1: select cassette-load (`CAL`) and play `counter.wav` into the
 CP2's recorder input. Or just enter the listing by hand — `cp1asm` is useful on
 its own to turn readable assembly into the cell numbers you key in.
 
+**Examples** ([`examples/`](examples/)): [`counter.txt`](examples/counter.txt)
+(counts 0–99 on the display) and [`port2_counter.txt`](examples/port2_counter.txt)
+(counts 0–255 as a binary pattern on **Port 2** — drive 8 LEDs or read it from a
+microcontroller). Prebuilt WAVs of both are on the
+**[`example-tapes` release](https://github.com/lambdamikel/kosmos-cp1-devel-toolchain/releases/tag/example-tapes)**.
+
 ## Writing programs — `cp1asm`
 
 A real two-pass assembler: labels for jump targets, named `DATA` cells, `ORG`,

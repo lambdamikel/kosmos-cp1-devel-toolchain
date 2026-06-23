@@ -1,0 +1,23 @@
+# Port-2 binary counter demo for the Kosmos CP1
+#
+# Outputs 0, 1, 2, ... , 255 as an 8-bit binary pattern on Port 2, then wraps.
+# Watch it on 8 LEDs wired to Port 2, or read it from a microcontroller --
+# e.g. the Arduino Mega that drives the LED matrix in the towers-of-hanoi repo.
+#
+# Run on the machine with:  000  PC  RUN
+#
+# Note: on the CP1's ports the bit order is reversed (least-significant bit is the
+# LEFT terminal, most-significant the right) -- wire/read accordingly.
+
+        ORG 0
+
+start:  AKO 0          # Akku <- 0
+loop:   P2A 0          # output Akku as 8 bits on Port 2   (assembles to 18.000)
+        VZG 100        #   hold 100 ms
+        VGL max        # Akku == 255 ?
+        SPB start      #   yes -> wrap back to 0
+        ADD one        #   no  -> Akku += 1
+        SPU loop       #        -> output the next value
+
+one:    DATA 1         # the constant 1
+max:    DATA 255       # wrap point (255 = full 8-bit range)
