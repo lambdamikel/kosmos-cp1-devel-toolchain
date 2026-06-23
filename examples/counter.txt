@@ -1,0 +1,21 @@
+# Counter demo for the Kosmos CP1
+#
+# Counts 0, 1, 2, ... , 99 on the display (~0.25 s each), then wraps to 0, forever.
+# Run on the real machine with:   000  PC   RUN
+# (or load it from a generated WAV first -- see the repo README).
+#
+# Written in real cp1asm syntax: labels for jump targets, named DATA cells,
+# mnemonics + operands -- no hand-encoded cell numbers.
+
+        ORG 0
+
+start:  AKO 0          # Akku <- 0                 (counter := 0)
+loop:   ANZ            # show the counter on the 7-seg display
+        VZG 250        #   ... hold it for 250 ms
+        ADD one        # counter := counter + 1
+        VGL limit      # counter == 100 ?
+        SPB start      #   yes -> wrap back to 0
+        SPU loop       #   no  -> show the next value
+
+one:    DATA 1         # the constant 1
+limit:  DATA 100       # the wrap value -- change it to count to something else
