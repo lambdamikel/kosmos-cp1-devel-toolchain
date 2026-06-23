@@ -36,7 +36,9 @@ def main():
     ap.add_argument("--lead", type=float, default=16.0, help="lead-in seconds")
     ap.add_argument("--bit", type=float, default=0.100, help="bit period, s")
     ap.add_argument("--amp", type=float, default=0.7)
+    ap.add_argument("--rate", type=int, default=44100, help="WAV sample rate, Hz (lower = smaller file; >=8000 is fine)")
     a = ap.parse_args()
+    SR = a.rate
     img = open(a.binfile, "rb").read()
     short, long = 0.35 * a.bit, 0.65 * a.bit
 
