@@ -7,6 +7,7 @@ A small, modern toolchain for the **Kosmos CP1** ("Computer Praxis", 1983) — t
 - **load them without typing them in** by rendering a program as a **cassette
   WAV** you play into the CP2 Kassetten-Modul — `cp1wav.py`
 - **read real CP1 tapes back** into program images — `cp1decode.py`
+- **run & trace programs with no hardware** — watch the display, port I/O, and where it halts or loops — `cp1emu.py`
 
 Everything is plain Python 3 (only `numpy` for the audio tools). No hardware
 mods, no hand-keying 256 cells on the keypad.
@@ -29,6 +30,9 @@ python3 cp1wav.py counter.bin counter.wav
 
 # (optional) verify it decodes back byte-for-byte
 python3 cp1decode.py counter.wav counter.bin     # -> 256/256 bytes match
+
+# run it with no hardware — watch the display, ports, and where it halts/loops
+python3 cp1emu.py examples/counter.txt
 ```
 
 Then on the CP1: select cassette-load (`CAL`) and play `counter.wav` into the
